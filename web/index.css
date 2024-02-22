@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.index_page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ebf2fc;
+}
+
+.index_container {
+    max-width: 1024px;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.index_container_userInfo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.index_container_userInfo > a {
+    margin-left: 1rem;
+    text-decoration: none;
+}
+
+.index_gallery {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0px, 1fr));
+    column-gap: 12px;
+    row-gap: 20px;
+}
+
+.index_gallery > div {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+}
+
+.index_gallery > div > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: .5rem;
+}
+
+.index_gallery > div > p {
+    font-weight: 500;
+    margin-bottom: .25rem;
+}
+
+.index_fileUpload {
+    display: flex;
+    background-color: white;
+    border-radius: 1rem;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 1rem;
+    width: 100%;
+    height: 8rem;
+}
+
+.index_galleryPagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    column-gap: .5rem;
+    font-size: 1.25rem;
+}
+
+.index_fileUpload {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* height: 8rem; */
+    background-color: white;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+.index_fileUpload_form {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    width: 100%;
+}
+
+.fileUpload_btn {
+    width: 200px;
+    border-radius: 99px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    background-color: #69256b;
+}
