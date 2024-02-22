@@ -1,0 +1,33 @@
+.init_page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.init_form {
+    display: flex;
+    gap: 2rem;
+}
+
+.init_form > #goAheadBtn {
+    border: none;
+    outline: none;
+    color: #FFF;
+    border-radius: 8px;
+    cursor: pointer;
+    background: red;
+    padding: .5rem .75rem;
+    width: 150px;
+}
+
+.init_form > a > #goBackBtn {
+    border: none;
+    outline: none;
+    color: #FFF;
+    border-radius: 8px;
+    cursor: pointer;
+    background: green;
+    padding: .5rem .75rem;
+    width: 150px;
+}

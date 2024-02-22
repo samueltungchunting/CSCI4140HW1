@@ -95,7 +95,7 @@
         <div class="index_fileUpload">
             <p>Upload Photos (>4MB):</p>
             <form action="upload.php" method="post" enctype="multipart/form-data" class="index_fileUpload_form">
-                <input type="file" name="my_image" required>
+            <input type="file" name="my_image" id="file" accept=".jpg, .jpeg, .gif, .png" required>
                 <select name="privacy" id="privacy">
                     <option value="public">Public</option>
                     <option value="private">Private</option>
@@ -106,7 +106,7 @@
             </form>
             <?php
                 if (isset($_GET['error'])) {
-                    echo "<p>{$_GET['error']}</p>";
+                    echo "<strong style='color: red; font-size: 1.25rem'>{$_GET['error']}</strong>";
                 }
             ?>
         </div>

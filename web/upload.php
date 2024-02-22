@@ -15,6 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit']) && isset($_FI
     // echo "<pre>";
 
     $file = $_FILES['my_image'];
+
     $privacy = $_POST['privacy'];
     $file_name = $file['name'];
     // $file_tmp_name = "{$file['tmp_name']}.tmp";
@@ -23,15 +24,24 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit']) && isset($_FI
     $file_error = $file['error'];
     $file_type = $file['type'];
 
+    if(empty($file_name)) {
+        $em = "No file chosen for upload, please select a file!";
+        header("Location: index.php?error=$em");
+        exit();
+    }
+
     if($file_error == 0) {
         // if image size larger then 4MB then return error
         if($file_size <= 4194304*2) {
             $img_ex = pathinfo($file_name, PATHINFO_EXTENSION);
             $img_ex_lc = strtolower($img_ex);
-            $allowed_exs = array("jpg", "jpeg", "png", "gif");
+            $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
+            $allowedMimeTypes = ['image/jpeg', 'image/gif', 'image/png'];
 
             // echo ($img_ex) . ' <-- img_ex' . '<br>';
-            if(in_array($img_ex_lc, $allowed_exs)) {
+            if(in_array($img_ex_lc, $allowed_exs)) 
+            // if (in_array($img_ex, $allowedExtensions) && in_array($file_type, $allowedMimeTypes))
+            {
                 $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
                 $img_upload_path = 'uploads/' . $new_img_name;
                 move_uploaded_file($file_tmp_name, $img_upload_path);
