@@ -19,10 +19,18 @@
             $photos[] = $row;
         }
     }
-    $visiblePhotos = array_filter($photos, function($photo) {
-        return $photo['privacy'] === 'public' || $photo['owner'] === $_COOKIE['user_session'];
-    });
-    $visiblePhotos = array_values($visiblePhotos);
+    $visiblePhotos = $photos;
+    if (isset($_COOKIE['user_session'])) {
+        $visiblePhotos = array_filter($photos, function($photo) {
+            return $photo['privacy'] === 'public' || $photo['owner'] === $_COOKIE['user_session'];
+        });
+        $visiblePhotos = array_values($visiblePhotos);
+    } else {
+        $visiblePhotos = array_filter($photos, function($photo) {
+            return $photo['privacy'] === 'public';
+        });
+        $visiblePhotos = array_values($visiblePhotos);
+    }
 
     $photosPerPage = 8;
     $totalPhotos = count($visiblePhotos);
