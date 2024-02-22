@@ -35,6 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit']) && isset($_FI
         if($file_size <= 4194304*2) {
             $img_ex = pathinfo($file_name, PATHINFO_EXTENSION);
             $img_ex_lc = strtolower($img_ex);
+            $allowed_exs = array("jpg", "jpeg", "png", "gif");
             $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
             $allowedMimeTypes = ['image/jpeg', 'image/gif', 'image/png'];
 

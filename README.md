@@ -1,6 +1,6 @@
 <h1>Photo Album Website Documentation</h1>
 <em>Welcome</em> to the documentation for the Photo Album website hosted at https://csci4140hw1-1155160200-mh04.onrender.com/index.php.
-<br/>
+<br/><br/>
 <h3>Overview</h3>
 The website consists of several PHP files and a CSS file, each serving a specific purpose. Here's a brief description of each:
 <br/>
@@ -23,21 +23,25 @@ The website consists of several PHP files and a CSS file, each serving a specifi
 
 Bonus checkpoint:
 1. Input Validation
+    <br/>
     1.1. file upload checking, such as (upload.php)
     - You can't upload files of this type!
     - Your file is too big!
     - No file chosen for upload, please select a file!
+    <br/>
     1.2. input field validation checking, such as (login.php)
     - Use of htmlspecialchars, used to sanitize the password and username input before further processing, and it helps to prevent HTML and script injection
     - also added 'required' attribute in input field to remind user input the field
 2. File Type Checking
-    2.1.    <code>
-            $img_ex = pathinfo($file_name, PATHINFO_EXTENSION);
-            $img_ex_lc = strtolower($img_ex);
-            $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
-            $allowedMimeTypes = ['image/jpeg', 'image/gif', 'image/png'];
-            if(in_array($img_ex_lc, $allowed_exs)) {..} </code>
-            and more (not space for copy and paste all) in upload.php
+    2.1.    
+        <br/>
+        <code>$img_ex = pathinfo($file_name, PATHINFO_EXTENSION);
+        $img_ex_lc = strtolower($img_ex);
+        $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
+        $allowedMimeTypes = ['image/jpeg', 'image/gif', 'image/png'];
+        if(in_array($img_ex_lc, $allowed_exs)) {..} </code>
+        and more (no space for copy and paste all) in upload.php
+        <br/>
     2.2. <Code>accept=".jpg, .jpeg, .gif, .png" and required</Code> attribute in the file input field for double-confirm
 3. System Initialization
     init.php
