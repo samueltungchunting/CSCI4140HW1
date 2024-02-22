@@ -89,17 +89,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* height: 8rem; */
+    height: 12rem;
     background-color: white;
     border-radius: 1rem;
     margin-top: 1rem;
 }
 
+.index_fileUpload > p {
+    margin-bottom: .5rem;
+    font-size: 1.25rem;
+}
+
 .index_fileUpload_form {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    width: 100%;
+    align-items: center;
+    gap: .25rem;
 }
 
 .fileUpload_btn {
@@ -108,6 +113,11 @@
     outline: none;
     border: none;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     background-color: #69256b;
+    color: white;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }

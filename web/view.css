@@ -1,0 +1,18 @@
+.view_page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+}
+
+.view_filtering {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    align-items: center;
+}
+
+.view_actions {
+    display: flex;
+    gap: 1rem;
+}

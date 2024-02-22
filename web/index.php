@@ -2,14 +2,14 @@
     include "db_connect.php";
 
     $photos = [
-        ['id' => 1, 'owner' => "Student", 'image_url' => 'IMG-65d682a501b069.22508447.png', 'privacy' => 'private'],
-        ['id' => 2, 'owner' => "Student", 'image_url' => 'IMG-65d682a501b069.22508447.png', 'privacy' => 'public'],
-        ['id' => 3, 'owner' => "admin", 'image_url' => 'IMG-65d682a501b069.22508447.png', 'privacy' => 'private'],
-        ['id' => 4, 'owner' => "Student", 'image_url' => 'IMG-65d682a501b069.22508447.png', 'privacy' => 'private'],
-        ['id' => 5, 'owner' => "Student", 'image_url' => 'IMG-65d682a501b069.22508447.png', 'privacy' => 'private'],
-        ['id' => 6, 'owner' => "Student", 'image_url' => 'IMG-65d682a501b069.22508447.png', 'privacy' => 'private'],
-        ['id' => 7, 'owner' => "Student", 'image_url' => 'IMG-65d682a501b069.22508447.png', 'privacy' => 'private'],
-        ['id' => 8, 'owner' => "Student", 'image_url' => 'IMG-65d682a501b069.22508447.png', 'privacy' => 'private'],
+        // ['id' => 1, 'owner' => "Student", 'image_url' => 'IMG-65d681732c1045.97478616', 'privacy' => 'private'],
+        // ['id' => 2, 'owner' => "Student", 'image_url' => 'IMG-65d681732c1045.97478616', 'privacy' => 'public'],
+        // ['id' => 3, 'owner' => "admin", 'image_url' => 'IMG-65d681732c1045.97478616', 'privacy' => 'private'],
+        // ['id' => 4, 'owner' => "Student", 'image_url' => 'IMG-65d681732c1045.97478616', 'privacy' => 'private'],
+        // ['id' => 5, 'owner' => "Student", 'image_url' => 'IMG-65d681732c1045.97478616', 'privacy' => 'private'],
+        // ['id' => 6, 'owner' => "Student", 'image_url' => 'IMG-65d681732c1045.97478616', 'privacy' => 'private'],
+        // ['id' => 7, 'owner' => "Student", 'image_url' => 'IMG-65d681732c1045.97478616', 'privacy' => 'private'],
+        // ['id' => 8, 'owner' => "Student", 'image_url' => 'IMG-65d681732c1045.97478616', 'privacy' => 'private'],
     ];
 
     $sql = "SELECT * FROM album ORDER BY id DESC";
@@ -19,10 +19,26 @@
             $photos[] = $row;
         }
     }
-    $visiblePhotos = array_filter($photos, function($photo) {
-        return $photo['privacy'] === 'public' || $photo['owner'] === $_COOKIE['user_session'];
-    });
-    $visiblePhotos = array_values($visiblePhotos);
+    $visiblePhotos = $photos;
+    if (isset($_COOKIE['user_session'])) {
+        $visiblePhotos = array_filter($photos, function($photo) {
+            return $photo['privacy'] === 'public' || $photo['owner'] === $_COOKIE['user_session'];
+        });
+        $visiblePhotos = array_values($visiblePhotos);
+    } else {
+        $visiblePhotos = array_filter($photos, function($photo) {
+            return $photo['privacy'] === 'public';
+        });
+        $visiblePhotos = array_values($visiblePhotos);
+    }
+
+    // echo "<pre>";
+    // print_r($visiblePhotos);
+    // echo "<pre>";
+    // $visiblePhotos = array_filter($photos, function($photo) {
+    //     return $photo['privacy'] === 'public' || $photo['owner'] === $_COOKIE['user_session'];
+    // });
+    // $visiblePhotos = array_values($visiblePhotos);
 
     $photosPerPage = 8;
     $totalPhotos = count($visiblePhotos);
@@ -88,13 +104,13 @@
             <p>Upload Photos:</p>
             <form action="upload.php" method="post" enctype="multipart/form-data" class="index_fileUpload_form">
                 <input type="file" name="my_image" required>
-                <input type="submit" name="submit" value="Upload" class="fileUpload_btn">
-                <!-- also with a toggle that have either private or public as option -->
-                <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch -->
                 <select name="privacy" id="privacy">
                     <option value="public">Public</option>
                     <option value="private">Private</option>
                 </select> 
+                <input type="submit" name="submit" value="Upload" class="fileUpload_btn">
+                <!-- also with a toggle that have either private or public as option -->
+                <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch -->
             </form>
             <?php
                 if (isset($_GET['error'])) {
