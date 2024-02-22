@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit']) && isset($_FI
 
     if($file_error == 0) {
         // if image size larger then 4MB then return error
-        if($file_size <= 4194304) {
+        if($file_size <= 4194304*2) {
             $img_ex = pathinfo($file_name, PATHINFO_EXTENSION);
             $img_ex_lc = strtolower($img_ex);
             $allowed_exs = array("jpg", "jpeg", "png", "gif");

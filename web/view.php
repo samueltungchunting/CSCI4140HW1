@@ -27,7 +27,7 @@
         // Read an existing image file
         $image->readImage('uploads/'.$image_path);
         $borderColor = new ImagickPixel('#000000'); // Black color
-        $image->borderImage($borderColor, 40, 20);
+        $image->borderImage($borderColor, 40, 40);
 
         $image->writeImage('uploads/'.'Border-'.$image_path);
 
@@ -35,10 +35,10 @@
         return 'uploads/Border-'.$image_path;
     }
 
-    function BlurImage($image_path) {
+    function blurImage($image_path) {
         $image = new Imagick();
         $image->readImage('uploads/'.$image_path);
-        $image->blurImage(5, 3); 
+        $image->transformImageColorspace(Imagick::COLORSPACE_GRAY);
 
         $image->writeImage('uploads/'.'Blur-'.$image_path);
 
@@ -155,7 +155,7 @@
                             echo "<input type='hidden' name='id' value='$id'>";
                             echo "<input type='hidden' name='image_url' value='$image_url'>";
                             echo "<button type='submit' name='apply_border'>Apply Border</button>";
-                            echo "<button type='submit' name='apply_black_white'>Blur</button>";
+                            echo "<button type='submit' name='apply_black_white'>Black & White</button>";
                         echo "</form>";
                     echo "</div>";
                     // Add discard and finish buttons

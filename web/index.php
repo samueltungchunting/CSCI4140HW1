@@ -32,14 +32,6 @@
         $visiblePhotos = array_values($visiblePhotos);
     }
 
-    // echo "<pre>";
-    // print_r($visiblePhotos);
-    // echo "<pre>";
-    // $visiblePhotos = array_filter($photos, function($photo) {
-    //     return $photo['privacy'] === 'public' || $photo['owner'] === $_COOKIE['user_session'];
-    // });
-    // $visiblePhotos = array_values($visiblePhotos);
-
     $photosPerPage = 8;
     $totalPhotos = count($visiblePhotos);
     $totalPages = ceil($totalPhotos / $photosPerPage);
@@ -101,7 +93,7 @@
             <?php endfor; ?>
         </div>
         <div class="index_fileUpload">
-            <p>Upload Photos:</p>
+            <p>Upload Photos (>4MB):</p>
             <form action="upload.php" method="post" enctype="multipart/form-data" class="index_fileUpload_form">
                 <input type="file" name="my_image" required>
                 <select name="privacy" id="privacy">
