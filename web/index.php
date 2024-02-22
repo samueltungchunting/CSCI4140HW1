@@ -31,6 +31,7 @@
         });
         $visiblePhotos = array_values($visiblePhotos);
     }
+<<<<<<< HEAD
 
     // echo "<pre>";
     // print_r($visiblePhotos);
@@ -39,6 +40,8 @@
     //     return $photo['privacy'] === 'public' || $photo['owner'] === $_COOKIE['user_session'];
     // });
     // $visiblePhotos = array_values($visiblePhotos);
+=======
+>>>>>>> 9903e6321d54e9cead3d631d377c61366cfde91e
 
     $photosPerPage = 8;
     $totalPhotos = count($visiblePhotos);
