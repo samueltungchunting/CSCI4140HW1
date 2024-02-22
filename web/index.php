@@ -55,6 +55,12 @@
 <body class="index_page">
     <div class="index_container">
         <div class="index_container_userInfo">
+            <?php
+                // if user_session is admin then show the initialization button
+                if (isset($_COOKIE['user_session']) && $_COOKIE['user_session'] === 'admin') {
+                    echo "<a href='/init.php'><button class='init_dir_btn'>Initialization</button></a>";
+                }
+            ?>
             <p class="">Welcome, <?php echo (isset($_COOKIE['user_session'])) ? $_COOKIE['user_session'] : 'Guest'?>!!</p>
             <?php echo (isset($_COOKIE['user_session'])) ? "<a href='logout.php'>Logout</a>" : "<a href='login.php'>Login</a>" ?>
         </div>

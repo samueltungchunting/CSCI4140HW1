@@ -28,4 +28,7 @@ RUN mkdir -p /usr/src/php/ext/imagick; \
 ENV PORT=8000
 EXPOSE ${PORT}
 
+RUN chmod -R 777 /var/www/html/uploads/
+# RUN chmod -R 777 /tmp/
+
 RUN sed -i 's/Listen 80/Listen ${PORT}/' /etc/apache2/ports.conf
