@@ -19,7 +19,7 @@
             exit();
         }
     }
-    session_start();
+    // session_start();
 
     function borderImage($image_path){
         $image = new Imagick();
@@ -87,24 +87,26 @@
         } elseif (isset($_POST["finish"]) && isset($_POST['photo_id'])) {
             $id = $_POST['photo_id'];
             // // Assuming $id is the ID of the photo being edited
-            $filter = isset($_GET['filter']) ? $_GET['filter'] : null;
-            $image = new Imagick();
+            $filter = isset($_POST['filter']) ? $_POST['filter'] : null;
             $image_url = $_POST['image_url']; // Adjust the path as per your file naming convention
-            $image->readImage('uploads/'.$image_url);
+            // $image = new Imagick();
+            // $image->readImage('uploads/'.$image_url);
+            $new_image_url = $image_url;
+
             switch($filter) {
                 case 'Border':
-                    $borderColor = new ImagickPixel('#000000'); // Black color
-                    $image->borderImage($borderColor, 40, 20);
+                    $new_image_url = 'Border-'.$image_url;
                     break;
                 case 'Blur':
-                    $image->blurImage(5, 3); 
+                    $new_image_url = 'Blur-'.$image_url;
                     break;
                 default:
                     break;
             }
-            $image->writeImage('uploads/'.$image_url);
-            $deleteImageSql = "UPDATE album SET editable = 0 WHERE id = $id";
-            if (pg_query($conn, $deleteImageSql)) {
+            // $image->writeImage('uploads/'.$image_url);
+            // $image->destroy();
+            $updateImageSql = "UPDATE album SET editable = 0, image_url = '$new_image_url' WHERE id = $id";
+            if (pg_query($conn, $updateImageSql)) {
                 header("Location: index.php");
                 exit();
             } else {
@@ -160,6 +162,7 @@
                     echo "<form method='post' action='view.php' class=\"view_actions\">";
                         echo "<input type='hidden' name='photo_id' value='$id'>";
                         echo "<input type='hidden' name='image_url' value='$image_url'>";
+                        echo "<input type='hidden' name='filter' value='$filter'>";
                         echo "<button type='submit' name='discard'>Discard</button>";
                         echo "<button type='submit' name='finish'>Finish</button>";
                     echo "</form>";
